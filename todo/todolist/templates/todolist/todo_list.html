@@ -1,0 +1,44 @@
+{% extends 'main/base_layout.html' %}
+{% block title %}todo list{% endblock %}
+{% load my_custom_tags %}
+
+{% block main-content %}
+{% my_simple_tag user as my_simple_variable %}
+<h4>{{my_simple_variable}}</h4>
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+                  <thead>
+                  <tr>
+                      <td scope="col"> task name</td>
+                      <td scope="col">task priority</td>
+                      <td scope="col">task description</td>
+                      <td scope="col">action</td>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  {% for task in task_list%}
+                  <tr>
+                      <td>{{task.name | name_filter_cleaner }}</td>
+                      <td>{{task.priority}}</td>
+                      <td>{{task.description | truncatewords:5 }}</td>
+                      <td>
+                          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                              <a type="button" class="btn btn-success" href="{% url 'todolist:todo-details' task.id %}">view</a>
+                              <a type="button" class="btn btn-warning" href="{% url 'todolist:todo-update' task.id %}">update</a>
+                              <a type="button" class="btn btn-danger" href="{% url 'todolist:todo-delete' task.id %}">delete</a>
+                            </div>
+                      </td>
+                  </tr>
+                  {% endfor %}
+
+
+                  </tbody>
+              </table>
+        </div>
+    </div>
+{% endblock %}
+
+
