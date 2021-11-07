@@ -1,0 +1,29 @@
+{% extends 'main/base_layout.html' %}
+{% block title %}todo list{% endblock %}
+{% load my_custom_tags %}
+
+{% block main-content %}
+{% my_simple_tag user as my_simple_variable %}
+<h4>{{my_simple_variable}}</h4>
+
+<div class="container">
+    <div class="row">
+
+        <form method="post" action="{% url 'movies:movies-create' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{form.as_p}}
+             <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="text-center mt-5" style="display:inline">
+                    <a href="{% url 'movies:movies-list'%}">
+                        <button type="button" class="btn btn-info">
+                            Back to Movie Index
+                        </button>
+                    </a>
+                </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}
+
+

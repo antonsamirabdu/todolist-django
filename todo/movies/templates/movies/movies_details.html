@@ -1,0 +1,36 @@
+{% extends 'main/base_layout.html' %}
+{% block title %}todo details{% endblock %}
+{% load my_custom_tags %}
+
+{% block main-content %}
+{% my_simple_tag user as my_simple_variable %}
+<h4>{{my_simple_variable}}</h4>
+<div class="container">
+    <div class="row">
+      <table class="table">
+          <thead>
+          <tr>
+              <td scope="col"> task name</td>
+              <td scope="col">task active</td>
+              <td scope="col">task description</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>{{movie.name}}</td>
+              <td>{{movie.active}}</td>
+              <td>{{movie.description | truncatewords:5 }}</td>
+          </tr>
+          </tbody>
+      </table>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <a type="button" class="btn btn-success" href="{% url 'movies:movies-update' movie.id %}">update</a>
+            <a type="button" class="btn btn-danger" href="{% url 'movies:movies-list' %}">back to list</a>
+        </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
