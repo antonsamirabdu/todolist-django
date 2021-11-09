@@ -7,7 +7,10 @@
 <h4>{{my_simple_variable}}</h4>
 <div class="container">
     <div class="row">
-      <table class="table">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <table class="table">
           <thead>
           <tr>
               <td scope="col"> task name</td>
@@ -23,14 +26,90 @@
           </tr>
           </tbody>
       </table>
+            </div>
+            <div class="col">
+              <div class="card" style="width: 18rem;">
+              <img src="{{movie.poster.url}}" class="card-img-top" alt="image">
+              <div class="card-body">
+                <p class="card-text">{{movie.description}}</p>
+              </div>
+            </div>
+            </div>
+
+          </div>
+
+
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <a type="button" class="btn btn-success" href="{% url 'movies:movies-update' movie.id %}">update</a>
             <a type="button" class="btn btn-danger" href="{% url 'movies:movies-list' %}">back to list</a>
         </div>
         </div>
+</div>
+    <div class="row">
+                <div class="col">
+                    <div class="accordion" id="accordionExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Actor
+                          </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                              {% for actor in movie.actors.all %}
 
-    </div>
+                              <div class="card mb-3" style="max-width: 540px;">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <img class="rounded-circle z-depth-2" src="{{actor.profile_image.url}}" class="img-fluid rounded-start" alt="image">
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{actor.first_name}}</h5>
+                                    <p class="card-text">{{actor.id_name}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                              {% endfor %}
+                                  </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            review
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                              {% for review in movie.review_set.all %}
+                              <div class="card mb-3" style="max-width: 540px;">
+                              <div class="row g-0">
+                                  {% if review.attachment %}
+                                    <div class="col-md-4">
+                                      <img src="{{review.attachment.url}}" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                  {% endif %}
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{review.comment}}</h5>
+                                    <p class="card-text">{{my_simple_variable}}</p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                              {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+</div>
+
 
 {% endblock %}
-
-

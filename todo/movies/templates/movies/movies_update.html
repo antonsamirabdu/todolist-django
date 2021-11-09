@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
 
-        <form method="post" action="{% url 'movies:movies-update' movie.id %}">
+        <form method="post" action="{% url 'movies:movies-update' movie.id %}" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {{form.as_p}}

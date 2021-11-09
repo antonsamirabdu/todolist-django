@@ -4,6 +4,7 @@ from .models import Movies
 from .forms import MovieForm
 
 
+
 # Create your views here.
 def index(request):
     return HttpResponse('movies')
@@ -25,7 +26,6 @@ def movies_details(request, pk):
 def movies_delete(request, pk):
     movie_index = Movies.objects.get(pk=pk).delete()
     my_context = {'movie': movie_index}
-    print(my_context)
     return redirect('movies:movies-list')
 
 
@@ -33,7 +33,7 @@ def movies_update(request, pk):
     movie = Movies.objects.get(pk=pk)
     movie_form = MovieForm(instance=movie)
     if request.method == 'POST':
-        movie_form = MovieForm(data=request.POST, instance=movie)
+        movie_form = MovieForm(data=request.POST, files=request.FILES, instance=movie)
         if movie_form.is_valid():
             print('yes is valid')
             movie_form.save()

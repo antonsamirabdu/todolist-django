@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todolist',
-    'movies'
+    'movies.apps.MoviesConfig',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,14 @@ STATIC_ROOT = '/home/antonsamirabdu/django_projects/static_root'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/home/antonsamirabdu/django_projects/media_root'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'antonsamirabdu@gmail.com'
+
+LOGIN_URL = '/accounts/login'
+
+LOGIN_REDIRECT_URL = '/movies/'
+LOGOUT_REDIRECT_URL = '/movies/'

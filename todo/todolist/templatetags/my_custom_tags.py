@@ -5,7 +5,7 @@ register = Library()
 
 @register.simple_tag
 def my_simple_tag(user):
-    return "hello {} your todolist".format(user)
+    return "{}".format(user)
 
 
 @register.filter
